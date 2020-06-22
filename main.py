@@ -20,7 +20,7 @@ def select_word_length(difficulty_choice):
     word_length = 0
     E = [4, 5, 6]
     N = [6, 7, 8]
-    H = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    H = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
     if difficulty_choice == "E":
         word_length = random.choice(E)
     if difficulty_choice == "N":
@@ -29,7 +29,7 @@ def select_word_length(difficulty_choice):
         word_length = random.choice(H)
     return word_length
 
-def pick(word_length):
+def choose(word_length):
     word = []
     with open("words.txt") as words_file:
         for w in words_file.readlines():
@@ -37,7 +37,6 @@ def pick(word_length):
                 word.append(w.strip())
                 chosen_word = (random.choice(word)).lower()
     return chosen_word
-
 
 def show_word_thus_far(word_choice,guesses):
     for char in word_choice:
@@ -57,9 +56,10 @@ if __name__ == "__main__":
     start_game()
     difficulty = difficulty_level()
     print('You selected ' + difficulty)
+    print('\n')
     word_length = select_word_length(difficulty)
     print('Starting a game with ' + str(word_length) + ' letters')
-    word_choice = pick(word_length)
+    word_choice = choose(word_length)
     # print('The word selected is ' + word_choice)
     guesses = []
     wrong_guesses = []
@@ -75,7 +75,6 @@ if __name__ == "__main__":
             wrong_guesses.append(letter_choice) 
         if is_win(word_choice,guesses):
             break
-
 
     if is_win(word_choice,guesses):
         show_word_thus_far(word_choice,guesses)
